@@ -1,0 +1,226 @@
+{
+	"info": {
+		"_postman_id": "7d817ffa-0b53-4d8e-9a33-4f9386870b6d",
+		"name": "cinebit",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Detail",
+			"item": [
+				{
+					"name": "Create detail",
+					"request": {
+						"method": "POST",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Maléfica: Maestra del Mal \",\n    \"poster_path\": \"https://image.tmdb.org/t/p/w600_and_h900_bestv2/eZOkXqHXWCKytd78TggAtJ0M3gU.jpg\",\n    \"genres\": \"Fantasía\",\n    \"original_title\": \"Maleficent: Mistress of Evil\",\n    \"overview\": \"Secuela de Maléfica que cuenta la vida de Maléfica y Aurora, así como las alianzas que formarán para sobrevivir a las amenazas del mágico mundo en el que habitan.\",\n    \"popularity\": \"7.2\",\n    \"release_date\": \"18 octubre 2019\",\n    \"runtime\": \"118\",\n    \"vote_average\": \"100\",\n    \"vote_count\": \"25\",\n    \"director\": \"Joachim Rønning\",\n    \"profile_path\": \"https://image.tmdb.org/t/p/w600_and_h900_bestv2/6Ngvvc3WIPgg7L0vvMUYs4uHYjR.jpg\",\n    \"trailer\": \"https://www.youtube.com/watch?v=trQ2Ft_A478\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/detail/create",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"detail",
+								"create"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Edit",
+					"request": {
+						"method": "PUT",
+						"header": [
+							{
+								"key": "Content-Type",
+								"name": "Content-Type",
+								"value": "application/json",
+								"type": "text"
+							}
+						],
+						"body": {
+							"mode": "raw",
+							"raw": "{\n    \"title\": \"Maléfica: Maestra del Mal\",\n    \"poster_path\": \"https://image.tmdb.org/t/p/w600_and_h900_bestv2/eZOkXqHXWCKytd78TggAtJ0M3gU.jpg\",\n    \"genres\": \"Fantasía\",\n    \"original_title\": \"Maleficent: Mistress of Evil\",\n    \"overview\": \"Secuela de Maléfica que cuenta la vida de Maléfica y Aurora, así como las alianzas que formarán para sobrevivir a las amenazas del mágico mundo en el que habitan.\",\n    \"popularity\": \"7.2\",\n    \"release_date\": \"18 octubre 2019\",\n    \"runtime\": \"118\",\n    \"vote_average\": \"150\",\n    \"vote_count\": \"25\",\n    \"director\": \"Joachim Rønning\",\n    \"profile_path\": \"https://image.tmdb.org/t/p/w600_and_h900_bestv2/6Ngvvc3WIPgg7L0vvMUYs4uHYjR.jpg\",\n    \"trailer\": \"https://www.youtube.com/watch?v=trQ2Ft_A478\"\n}",
+							"options": {
+								"raw": {
+									"language": "json"
+								}
+							}
+						},
+						"url": {
+							"raw": "localhost:3000/detail/edit/5dc8f64e590f6f5da3109d68",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"detail",
+								"edit",
+								"5dc8f64e590f6f5da3109d68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetAll",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/detail/",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"detail",
+								""
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "GetFindId",
+					"request": {
+						"method": "GET",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/detail/5dc8f64e590f6f5da3109d68",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"detail",
+								"5dc8f64e590f6f5da3109d68"
+							]
+						}
+					},
+					"response": []
+				},
+				{
+					"name": "Delete",
+					"request": {
+						"method": "DELETE",
+						"header": [],
+						"url": {
+							"raw": "localhost:3000/detail/delete/5dc8f64e590f6f5da3109d68",
+							"host": [
+								"localhost"
+							],
+							"port": "3000",
+							"path": [
+								"detail",
+								"delete",
+								"5dc8f64e590f6f5da3109d68"
+							]
+						}
+					},
+					"response": []
+				}
+			],
+			"protocolProfileBehavior": {}
+		},
+		{
+			"name": "Details",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/details/tv/1",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"details",
+						"tv",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Credits",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/credits/movie/550",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"credits",
+						"movie",
+						"550"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Trailer",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/video/movie/290859",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"video",
+						"movie",
+						"290859"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Season",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/season/tv/1668/2",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"season",
+						"tv",
+						"1668",
+						"2"
+					]
+				}
+			},
+			"response": []
+		}
+	],
+	"protocolProfileBehavior": {}
+}
