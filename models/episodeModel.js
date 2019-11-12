@@ -1,8 +1,8 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const DetailSchema = new Schema({
-  detailId: {
+const EpisodeSchema = new Schema({
+  seasonId: {
     type: String,
     require: true
   },
@@ -36,6 +36,6 @@ const DetailSchema = new Schema({
   }
 });
 
-const Detail = mongoose.model('detail', DetailSchema);
+const Episode = mongoose.model('episode', EpisodeSchema);
 
-module.exports = Detail;
+module.exports = Episode;
