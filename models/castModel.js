@@ -1,7 +1,7 @@
 const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
-const castSchema = new Schema({
+const CastSchema = new Schema({
   detailId: {
     type: String,
     require: true
@@ -20,6 +20,6 @@ const castSchema = new Schema({
   }
 });
 
-const Detail = mongoose.model('detail', DetailSchema);
+const Cast = mongoose.model('cast', CastSchema);
 
-module.exports = Detail;
+module.exports = Cast;
