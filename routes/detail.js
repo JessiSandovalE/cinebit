@@ -1,77 +1,78 @@
-var express = require('express');
-var router = express.Router();
-let Detail = require('../models/detailModel');
+let express = require('express');
+let router = express.Router();
+let details = require('../controllers/detailsController');
 
 /* GET users listing. */
 router
 
   .get('/', async (req, res) => {
-    Detail
-      .find((err, data) => {
-        if (err) res.json(err);
-        res.json(data);
-      })
+    try {
+      let data = await details.getAll();
+      if (!data) res.status(200).json({
+        message: "data not found"
+      });
+      res.json(data);
+    } catch (error) {
+      res.json({
+        error
+      });
+    }
   })
 
   .get('/:id', async (req, res) => {
-    Detail
-      .findById(req.params.id, (err, data) => {
-        if (err) res.json(err);
-        res.json(data);
-      })
+    try {
+      let data = await details.getFindId(req.params.id);
+      if (!data) res.status(200).json({
+        message: "data not found"
+      });
+      res.json(data);
+    } catch (error) {
+      res.json({
+        error
+      });
+    }
   })
 
   .post('/create', async (req, res) => {
-    Detail
-      .create(req.body)
-      .then((data) => {
-        res.status(201).json(data);
-      })
-      .catch(err => {
-        res.json({
-          error: err
-        })
-      })
+    try {
+      let data = await details.createDetail(req.body);
+      if (!data) res.status(200).json({
+        message: "data not found"
+      });
+      res.status(201).json(data);
+    } catch (error) {
+      res.json({
+        error
+      });
+    }
   })
 
   .put('/edit/:id', async (req, res) => {
-
-    Detail
-      .findByIdAndUpdate({
-          _id: req.params.id
-        },
-        req.body
-      )
-      .then((data) => {
-        Detail.findOne({
-            _id: req.params.id
-          })
-          .then((data) => {
-            res.json(data);
-          })
-      })
-      .catch(err => {
-        res.json({
-          error: err
-        })
-      })
+    try {
+      let data = await details.editDetail(req.params.id, req.body);
+      if (!data) res.status(200).json({
+        message: "data not found"
+      });
+      res.status(200).json(data);
+    } catch (error) {
+      res.json({
+        error
+      });
+    }
   })
 
   .delete('/delete/:id', async (req, res) => {
-    Detail
-      .findByIdAndRemove({
-        _id: req.params.id
-      })
-      .then((data) => {
-        res.json({
-          message: `Registro eliminado - id: ${req.params.id}`
-        });
-      })
-      .catch(err => {
-        res.json({
-          error: err
-        })
-      })
+    try {
+      let data = await details.deleteDetail(req.params.id);
+      if (!data) res.status(200).json({
+        message: "data not found"
+      });
+      res.status(200).json(data);
+    } catch (error) {
+      res.json({
+        error
+      });
+    }
   })
 
 module.exports = router;

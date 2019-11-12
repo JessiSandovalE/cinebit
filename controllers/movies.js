@@ -87,7 +87,9 @@ let creditsMovie = async (req) => {
       let d = data.data;
       let cast = [];
 
-      for (let i = 0; i < 5; i++) {
+      let tamano = 0;
+      d.cast.length < 5 ? tamano = d.cast.length : tamano = 5;
+      for (let i = 0; i < tamano; i++) {
         cast.push({
           name: i.name = d.cast[i].name,
           character: i.character = d.cast[i].character,
@@ -133,20 +135,38 @@ let creditsTv = async (req) => {
       let c = credits.data;
 
       let cast = [];
+      let tamano = 0;
+      c.cast.length < 5 ? tamano = c.cast.length : tamano = 5;
+      for (let i = 0; i < tamano; i++) {
+        let castName = '';
+        let castChar = '';
+        let castPp = '';
+        if (c.cast[i]) {
+          castName = c.cast[i].name;
+          castChar = c.cast[i].character;
+          castPp = 'http://image.tmdb.org/t/p/w400' + c.cast[i].profile_path
+        }
 
-      for (let i = 0; i < 5; i++) {
         cast.push({
-          name: i.name = c.cast[i].name,
-          character: i.character = c.cast[i].character,
-          profile_path: i.profile_path = 'http://image.tmdb.org/t/p/w400' + c.cast[i].profile_path
+          name: i.name = castName,
+          character: i.character = castChar,
+          profile_path: i.profile_path = castPp
         });
+      }
+
+
+      let dir = '';
+      let dirPp = '';
+      if (d.created_by[0]) {
+        castName = d.created_by[0].name;
+        dirPp = 'http://image.tmdb.org/t/p/w400' + d.created_by[0].profile_path;
       }
 
       let res = {
         id: d.id,
         crew: {
-          director: d.created_by[0].name,
-          profile_path: 'http://image.tmdb.org/t/p/w400' + d.created_by[0].profile_path
+          director: dir,
+          profile_path: dirPp
         },
         cast
       }
