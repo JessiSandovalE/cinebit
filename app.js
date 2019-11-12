@@ -4,21 +4,12 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-<<<<<<< HEAD
 let indexRouter = require('./routes/index');
 let detailRouter = require('./routes/detail');
 let listRouter = require('./routes/list');
 var castRouter = require('./routes/cast');
 var seasonRouter = require('./routes/season');
 var episodeRouter = require('./routes/episode')
-=======
-var indexRouter = require('./routes/index');
-var detailRouter = require('./routes/detail');
-var castRouter = require('./routes/cast');
-var seasonRouter = require('./routes/season');
-var episodeRouter = require('./routes/episode')
-let listRouter = require('./routes/list');
->>>>>>> aafb143b49cfff184132dc6e7d14c2b3653e242d
 
 var app = express();
 
@@ -38,17 +29,10 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use('/', indexRouter);
 app.use('/detail', detailRouter);
-<<<<<<< HEAD
 app.use('/list', listRouter);
 app.use('/cast', castRouter);
 app.use('/season', seasonRouter);
 app.use('/episode', episodeRouter);
-=======
-app.use('/cast', castRouter);
-app.use('/season', seasonRouter);
-app.use('/episode', episodeRouter);
-app.use('/list', listRouter);
->>>>>>> aafb143b49cfff184132dc6e7d14c2b3653e242d
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
