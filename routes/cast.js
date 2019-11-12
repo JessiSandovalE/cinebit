@@ -1,78 +1,64 @@
 var express = require('express');
 var router = express.Router();
-let Cast = require('../models/castModel');
+let castController = require('../controllers/castsController');
 
 /* GET users listing. */
 router
 
   .get('/', async (req, res) => {
-    Cast
-      .find((err, data) => {
-        if (err) res.json(err);
-        res.json(data);
+    try {
+      let data = await castController.getAll();
+      if (!data) res.json({
+        message: 'data not found'
       })
+      res.json(data);
+    } catch (error) {
+      console.log(error);
+      res.json(error);
+    }
   })
 
   .get('/:id', async (req, res) => {
-    Cast
-      .findById(req.params.id, (err, data) => {
-        if (err) res.json(err);
-        res.json(data);
+    try {
+      let data = await castController.getFindId(req.params.id);
+      if (!data) res.json({
+        message: 'data not found'
       })
+      res.json(data);
+    } catch (error) {
+      console.log(error);
+      res.json(error);
+    }
   })
 
   .post('/create', async (req, res) => {
-    Cast
-      .create(req.body)
-      .then((data) => {
-        res.status(201).json(data);
-      })
-      .catch(err => {
-        res.json({
-          error: err
-        })
-      })
+    try {
+      let data = await castController.create(req.body);
+      res.json(data);
+    } catch (error) {
+      console.log(error);
+      res.json(error);
+    }
   })
 
   .put('/edit/:id', async (req, res) => {
-
-    Cast
-      .findByIdAndUpdate({
-          _id: req.params.id
-        },
-        req.body
-      )
-      .then((data) => {
-        Cast.findOne({
-            _id: req.params.id
-          })
-          .then((data) => {
-            res.json(data);
-          })
-      })
-      .catch(err => {
-        console.log(err);
-        res.json({
-          error: err
-        })
-      })
+    try {
+      let data = await castController.edit(req.params.id, req.body);
+      res.json(data);
+    } catch (error) {
+      console.log(error);
+      res.json(error);
+    }
   })
 
   .delete('/delete/:id', async (req, res) => {
-    Cast
-      .findByIdAndRemove({
-        _id: req.params.id
-      })
-      .then((data) => {
-        res.json({
-          message: `Registro eliminado - id: ${req.params.id}`
-        });
-      })
-      .catch(err => {
-        res.json({
-          error: err
-        })
-      })
+    try {
+      let data = await castController.delete(req.params.id);
+      res.json(data);
+    } catch (error) {
+      console.log(error);
+      res.json(error);
+    }
   })
 
 module.exports = router;

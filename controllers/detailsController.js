@@ -7,7 +7,7 @@ detailsController.getAll = async () => {
   return new Promise((resolve, reject) => {
     try {
       Detail.find((err, data) => {
-        if (err) res.json(err);
+        if (err) reject(err);
         resolve(data);
       })
     } catch (error) {
@@ -62,7 +62,7 @@ detailsController.editDetail = async (id, body) => {
         new: true,
         upsert: true
       });
-      const created = await Detail.findOne({
+      let created = await Detail.findOne({
         _id: id
       });
 
