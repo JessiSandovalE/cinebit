@@ -5,7 +5,8 @@ mongoose
 
   .connect('mongodb://localhost:27017', {
     dbName: db,
-    useNewUrlParser: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
   })
   .then(() => {
     console.log(`Ingresando a la base de datos <<${db}>> con éxito`);

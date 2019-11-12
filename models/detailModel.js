@@ -2,6 +2,10 @@ const mongoose = require('mongoose');
 const Schema = mongoose.Schema;
 
 const DetailSchema = new Schema({
+  type: {
+    type: String,
+    require: true
+  },
   title: {
     type: String,
     require: true
@@ -52,7 +56,13 @@ const DetailSchema = new Schema({
   },
   trailer: {
     type: String,
-    require: true
+    require: false
+  },
+  movie: String,
+  favorite: {
+    type: Boolean,
+    require: true,
+    default: 0
   }
 
 });
