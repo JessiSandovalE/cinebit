@@ -1,78 +1,66 @@
 var express = require('express');
 var router = express.Router();
-let Episode = require('../models/episodeModel');
+let episodeController = require('../controllers/episodesController');
 
 /* GET users listing. */
 router
 
   .get('/', async (req, res) => {
-    Episode
-      .find((err, data) => {
-        if (err) res.json(err);
-        res.json(data);
+    try {
+      let data = await episodeController.getAll();
+      if(!data) res.json({
+        message: 'data not found'
       })
+      res.json(data);
+    } catch (error) {
+      console.log(error);
+      res.json
+    }  
+  
   })
 
   .get('/:id', async (req, res) => {
-    Episode
-      .findById(req.params.id, (err, data) => {
-        if (err) res.json(err);
-        res.json(data);
+    try {
+      let data = await episodeController.getFindId(req.params.id);
+      if(!data) res.json({
+        message: 'data not found'
       })
+      res.json(data)
+    } catch (error) {
+      console.log(error);
+      res.json
+    }
   })
 
   .post('/create', async (req, res) => {
-    Episode
-      .create(req.body)
-      .then((data) => {
-        res.status(201).json(data);
-      })
-      .catch(err => {
-        res.json({
-          error: err
-        })
-      })
+    try {
+      let data = await episodeController.create(req.body);
+      res.json(data)
+    } catch (error) {
+      console.log(error);
+      res.json(error)
+    }
   })
 
   .put('/edit/:id', async (req, res) => {
 
-    Episode
-      .findByIdAndUpdate({
-          _id: req.params.id
-        },
-        req.body
-      )
-      .then((data) => {
-        Episode.findOne({
-            _id: req.params.id
-          })
-          .then((data) => {
-            res.json(data);
-          })
-      })
-      .catch(err => {
-        console.log(err);
-        res.json({
-          error: err
-        })
-      })
+    try {
+      let data = await episodeController.edit(req.params.id, req.body);
+      res.json(data);
+    } catch (error) {
+      console.log(error);
+      res.json(error);
+    }  
   })
 
   .delete('/delete/:id', async (req, res) => {
-    Episode
-      .findByIdAndRemove({
-        _id: req.params.id
-      })
-      .then((data) => {
-        res.json({
-          message: `Registro eliminado - id: ${req.params.id}`
-        });
-      })
-      .catch(err => {
-        res.json({
-          error: err
-        })
-      })
+    try {
+      let data = await episodeController.delete(req.params.id);
+      res.json(data);
+    } catch (error) {
+      console.log(error);
+      res.json(error);
+    }
   })
 
 module.exports = router;
